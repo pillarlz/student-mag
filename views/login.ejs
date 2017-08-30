@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="/css/login.css">
+</head>
+
+<body>
+	<div id="login"  class="formMain">
+		<h2>登录</h2>
+		<form id="loginForm">
+			<div class="form-content">
+				<p><label for="username">Username</label></p>
+				<p><input type="text" name="username" id="username" placeholder="username"></p>
+				<p><label for="password">Password</label></p>
+				<p><input type="password" name="password" id="password" placeholder="password"></p>
+				<p><input type="button" id="denglu" value="登录" class="sbtn"></p>
+			</div>
+		</form>
+	</div>
+	<script src="/js/jquery-3.2.1.min.js"></script>
+	<script type=text/javascript>
+        $("#denglu").click(function(){
+            $.post('/dologin',{
+                "username":$("#username").val(),
+                "password":$("#password").val()
+            },function(result){
+                if(result =="1"){
+                    window.location='/mindex';
+                } else if(result =="-1"){
+                    alert("用户名不存在");
+                } else if(result == "-2"){
+                    alert("密码错误！");
+                }
+            });
+        })
+	</script>
+</body>	
+</html>

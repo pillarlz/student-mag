@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>注册</title>
+	<link rel="stylesheet" type="text/css" href="/css/login.css">
+</head>
+
+<body>
+	<div id="regist" class="formMain">
+		<h2>注册</h2>
+		<form id=="registForm">
+			<div class="form-content">
+				<p><label for="username">Username</label></p>
+				<p><input type="text" name="username" id="username" placeholder="username"></p>
+				<p><label for="password">Password</label></p>
+				<p><input type="password" name="password" id="password" placeholder="password"></p>
+				<p><input type="button" id="zhuce" value="注册" class="sbtn"></p>
+			</div>
+		</form>
+	</div>
+
+	<script src="/js/jquery-3.2.1.min.js"></script>
+	<script type=text/javascript>
+        $("#zhuce").click(function(){
+            $.post("/doregist",{
+                "username":$("#username").val(),
+                "password":$("#password").val()
+            },function (result) {
+                if(result =="1"){
+                    alert("注册成功");
+                    window.location='/login';
+
+                } else if (result =="-1"){
+                    alert("用户名被占用");
+                } else if(result =="-3"){
+                    alert("服务器错误")
+                }
+            });
+        });
+
+	</script>
+</body>	
+</html>
